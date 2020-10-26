@@ -23,8 +23,8 @@
 
       <div class="content" id="simpsons"></div>
       
-      <button onclick=location=URL>New quote</button>
-      
+      <button id="myBtn">New quote</button>
+    
     </div>
 
   </section>
@@ -51,6 +51,11 @@ function fetchSimpsonsJSON() {
 }
 
 fetchSimpsonsJSON();
+
+document.getElementById("myBtn").addEventListener("click", function() {
+  fetchSimpsonsJSON();
+});
+
   </script>
 </body>
 
