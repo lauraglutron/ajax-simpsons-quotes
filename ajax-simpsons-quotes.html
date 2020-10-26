@@ -21,7 +21,7 @@
       <h1 class="title">Chuck Norris Jokes</h1>
       <p>Reload for another joke!</p>
 
-      <div class="content" id="chuck-norris">
+      <div class="content" id="simpsons">
       </div>
     </div>
 
@@ -30,7 +30,25 @@
   <!-- We need to load axios first! -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
   <script>
+function fetchSimpsonsJSON() {
+  const url = `https://simpsons-quotes-api.herokuapp.com/quotes`;
+  axios.get(url)
+    .then(function(response) {
+      return response.data[0]; 
+    })
+    .then(function(simpsons) {
+      console.log('data decoded from JSON:', simpsons);
 
+      const simpsonsHtml = `
+          <p>${simpsons.quote}</p>
+          <p><strong>${simpsons.character}</strong></p>
+          <img src="${simpsons.image}" />`
+
+      document.querySelector('#simpsons').innerHTML = simpsonsHtml;
+    });
+}
+
+fetchSimpsonsJSON();
   </script>
 </body>
 
